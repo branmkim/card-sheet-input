@@ -1,5 +1,32 @@
-// Next.js API route support: https://nextjs.org/docs/api-routes/introduction
+import { google } from 'googleapis'
 
-export default function handler(req, res) {
-  res.status(200).json({ name: 'John Doe' })
+export default async function handler(req, res) {
+    const query = []
+    Object.keys(req.body).forEach((key, index) => {
+        query.push(req.body[key])
+    })
+    console.log(query)
+
+    const auth = await google.auth.getClient({
+        projectId: "norse-carport-392418",
+        credentials: {
+            client_email: process.env.CLIENT_EMAIL,
+            private_key: process.env.PRIVATE_KEY.replace(/\\n/g, '\n')
+        },
+        scopes: ['https://www.googleapis.com/auth/spreadsheets']
+    })
+    const sheets = google.sheets({ version: 'v4', auth })
+    const body = {
+        values: [
+            query
+        ]
+    }
+    const response = await sheets.spreadsheets.values.append({
+        spreadsheetId: process.env.SHEET_ID,
+        range: 'Sheet1!A:D',
+        valueInputOption: "USER_ENTERED",
+        resource: body
+    })
+    console.log(response.status)
+    res.status(200).json({ data: response.data })
 }
