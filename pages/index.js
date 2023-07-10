@@ -31,7 +31,7 @@ export default function Home() {
     }
 
     return (
-        <main className="px-32">
+        <main className="px-8 pt-8">
             <form id="form" onSubmit={handleClick} className='flex flex-col w-60%'>
                 <div className='flex flex-wrap justify-between gap-2 my-1'>
                     <div className='flex-auto w-36'>
@@ -55,7 +55,7 @@ export default function Home() {
                         <label className='text-xs'>
                             Amount
                         </label>
-                        <input id="amount" type="number" name="amount" placeholder="$ x.xx" className='w-full h-10 border-2 rounded-md p-2 text-base'/>
+                        <input id="amount" type="number" step="0.01" name="amount" placeholder="$ x.xx" className='w-full h-10 border-2 rounded-md p-2 text-base'/>
                     </div>
                 </div>
 
