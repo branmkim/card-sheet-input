@@ -6,3 +6,7 @@ main {
     display: flex;
     justify-content: center;
 }
+input {
+    -webkit-appearance: none;
+    -moz-appearance: none;
+}

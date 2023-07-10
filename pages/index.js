@@ -32,7 +32,7 @@ export default function Home() {
 
     return (
         <main className="px-8 pt-8">
-            <form id="form" onSubmit={handleClick} className='flex flex-col w-60%'>
+                <form id="form" onSubmit={handleClick} className='flex flex-col w-60%'>
                 <div className='flex flex-wrap justify-between gap-2 my-1'>
                     <div className='flex flex-col flex-auto w-36'>
                         <label className='text-xs'>
@@ -67,7 +67,7 @@ export default function Home() {
                 </div>
                 <button type="submit" className='bg-green-400 hover:bg-green-500 transition-colors flex-auto h-10 rounded-md p-1 my-1'>Submit</button>
                 <div>
-                    {toast ? <p className='flex absolute bottom-1 right-1 items-center bg-green-400 w-32 h-10 rounded-md p-2 my-1'>Success</p> : null}
+                    {toast ? <p className='flex absolute bottom-1 right-1 items-center bg-green-400 w-32 h-10 rounded-md p-4 my-1'>Success</p> : null}
                 </div>
             </form>
             
