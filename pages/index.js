@@ -34,14 +34,14 @@ export default function Home() {
         <main className="px-8 pt-8">
             <form id="form" onSubmit={handleClick} className='flex flex-col w-60%'>
                 <div className='flex flex-wrap justify-between gap-2 my-1'>
-                    <div className='flex-auto w-36'>
+                    <div className='flex flex-col flex-auto w-36'>
                         <label className='text-xs'>
                             Date
                         </label>
                         <input id="date" type="date" name="date" placeholder="Date" className='w-full h-10 border-2 rounded-md p-2 text-base'/>
                     </div>
 
-                    <div className='flex-auto w-36'>
+                    <div className='flex flex-col flex-auto w-36'>
                         <label className='text-xs'>
                             Card
                         </label>
@@ -51,7 +51,7 @@ export default function Home() {
                         </select>
                     </div>
 
-                    <div className='flex-auto w-36'>
+                    <div className='flex flex-col flex-auto w-36'>
                         <label className='text-xs'>
                             Amount
                         </label>
@@ -59,7 +59,7 @@ export default function Home() {
                     </div>
                 </div>
 
-                <div className='flex-1 my-1'>
+                <div className='flex flex-col flex-1 my-1'>
                     <label className='block text-xs'>
                         Note
                     </label>
