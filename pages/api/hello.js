@@ -5,6 +5,7 @@ export default async function handler(req, res) {
     Object.keys(req.body).forEach((key, index) => {
         if(key != 'card') query.push(req.body[key])
     })
+    console.log(query)
 
     const auth = await google.auth.getClient({
         projectId: "norse-carport-392418",
@@ -22,7 +23,7 @@ export default async function handler(req, res) {
     }
     const response = await sheets.spreadsheets.values.append({
         spreadsheetId: process.env.SHEET_ID,
-        range: `${req.body.card}!A:D`,
+        range: req.body["card"] + "!A:C",
         valueInputOption: "USER_ENTERED",
         resource: body
     })
