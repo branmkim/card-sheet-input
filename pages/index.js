@@ -13,8 +13,8 @@ export default function Home() {
 
         const date = document.querySelector('#date').value
         const card = document.querySelector('#card').value
-        const amount = document.querySelector('#amount').value
         const note = document.querySelector('#note').value
+        const amount = document.querySelector('#amount').value
 
         const apiResponse = await fetch("/api/hello", {
             method: 'POST',
@@ -25,8 +25,8 @@ export default function Home() {
             body: JSON.stringify({
                 date,
                 card,
-                amount,
-                note
+                note,
+                amount
             })
         });
         console.log(apiResponse.status)
