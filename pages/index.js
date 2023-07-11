@@ -1,7 +1,7 @@
 import { useState, useEffect } from 'react'
 
 export default function Home() {
-    const [toast, setToast] = useState(false)
+    const [toast, setToast] = useState(0)
 
     const handleClick = async (e) => {
         e.preventDefault()
@@ -24,9 +24,13 @@ export default function Home() {
         });
         console.log(apiResponse.status)
         document.querySelector('#form').reset()
-        setToast(true)
+        if(apiResponse.status == 200) {
+            setToast(1)
+        } else {
+            setToast(2)
+        }
         setTimeout(() => {
-            setToast(false)
+            setToast(0)
         }, 1000)
     }
 
@@ -46,8 +50,10 @@ export default function Home() {
                             Card
                         </label>
                         <select id="card" name="card" className='w-full h-10 border-2 rounded-md p-2 text-base'>
-                            <option value="1">Capital One</option>
-                            <option value="2">Prime</option>
+                            <option value="Capital One">Capital One</option>
+                            <option value="Prime">Prime</option>
+                            <option value="Checking">Checking</option>
+                            <option value="HSA">HSA</option>
                         </select>
                     </div>
 
@@ -67,7 +73,8 @@ export default function Home() {
                 </div>
                 <button type="submit" className='bg-green-400 hover:bg-green-500 transition-colors flex-auto h-10 rounded-md p-1 my-1'>Submit</button>
                 <div>
-                    {toast ? <p className='flex absolute bottom-1 right-1 items-center bg-green-400 w-32 h-10 rounded-md p-4 my-1'>Success</p> : null}
+                    {toast == 1 ? <p className='flex absolute bottom-1 right-1 items-center bg-green-400 w-32 h-10 rounded-md p-4 my-1'>Success</p> : null}
+                    {toast == 2 ? <p className='flex absolute bottom-1 right-1 items-center bg-red-400 w-32 h-10 rounded-md p-4 my-1'>Failed</p> : null}
                 </div>
             </form>
             

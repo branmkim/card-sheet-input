@@ -3,9 +3,8 @@ import { google } from 'googleapis'
 export default async function handler(req, res) {
     const query = []
     Object.keys(req.body).forEach((key, index) => {
-        query.push(req.body[key])
+        if(key != 'card') query.push(req.body[key])
     })
-    console.log(query)
 
     const auth = await google.auth.getClient({
         projectId: "norse-carport-392418",
@@ -23,7 +22,7 @@ export default async function handler(req, res) {
     }
     const response = await sheets.spreadsheets.values.append({
         spreadsheetId: process.env.SHEET_ID,
-        range: 'Sheet1!A:D',
+        range: `${req.body.card}!A:D`,
         valueInputOption: "USER_ENTERED",
         resource: body
     })
