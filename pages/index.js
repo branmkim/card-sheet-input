@@ -1,14 +1,21 @@
-import { useState, useEffect } from 'react'
+import { useState } from 'react'
 
 export default function Home() {
     const [toast, setToast] = useState(0)
 
     const handleClick = async (e) => {
         e.preventDefault()
+        var form = document.getElementById("form");
+        var elements = form.elements;
+        for (var i = 0, len = elements.length; i < len; ++i) {
+            elements[i].readOnly = true;
+        }
+
         const date = document.querySelector('#date').value
         const card = document.querySelector('#card').value
         const amount = document.querySelector('#amount').value
         const note = document.querySelector('#note').value
+
         const apiResponse = await fetch("/api/hello", {
             method: 'POST',
             headers: {
@@ -23,7 +30,13 @@ export default function Home() {
             })
         });
         console.log(apiResponse.status)
-        document.querySelector('#form').reset()
+
+        document.querySelector('#amount').value = ''
+        document.querySelector('#note').value = ''
+        for (var i = 0, len = elements.length; i < len; ++i) {
+            elements[i].readOnly = false;
+        }
+
         if(apiResponse.status == 200) {
             setToast(1)
         } else {
