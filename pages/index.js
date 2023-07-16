@@ -1,4 +1,4 @@
-import { useState } from 'react'
+import { useState } from 'react';
 
 export default function Home() {
     const [toast, setToast] = useState(0)
@@ -84,7 +84,7 @@ export default function Home() {
                     </label>
                     <input id="note" type="text" name="note" placeholder="Describe transaction" className='w-full border-2 rounded-md p-2 text-base'/>
                 </div>
-                <button type="submit" className='bg-green-400 hover:bg-green-500 transition-colors flex-auto h-10 rounded-md p-1 my-1'>Submit</button>
+                <button type="submit" className='bg-green-400 hover:bg-green-500 transition-colors flex-auto h-10 rounded-md p-1 my-4'>Submit</button>
                 <div>
                     {toast == 1 ? <p className='flex absolute bottom-1 right-1 items-center bg-green-400 w-32 h-10 rounded-md p-4 my-1'>Success</p> : null}
                     {toast == 2 ? <p className='flex absolute bottom-1 right-1 items-center bg-red-400 w-32 h-10 rounded-md p-4 my-1'>Failed</p> : null}
