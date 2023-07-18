@@ -2,20 +2,24 @@ import { useState } from 'react';
 
 export default function Home() {
     const [toast, setToast] = useState(0)
+    const [loading, setLoading] = useState(false)
 
     const handleClick = async (e) => {
         e.preventDefault()
+
+        document.querySelector('#submit').disabled = true;
+        
         var form = document.getElementById("form");
         var elements = form.elements;
         for (var i = 0, len = elements.length; i < len; ++i) {
             elements[i].readOnly = true;
         }
-
+        
         const date = document.querySelector('#date').value
         const card = document.querySelector('#card').value
         const note = document.querySelector('#note').value
         const amount = document.querySelector('#amount').value
-
+        
         const apiResponse = await fetch("/api/hello", {
             method: 'POST',
             headers: {
@@ -30,12 +34,14 @@ export default function Home() {
             })
         });
         console.log(apiResponse.status)
-
+        
         document.querySelector('#amount').value = ''
         document.querySelector('#note').value = ''
         for (var i = 0, len = elements.length; i < len; ++i) {
             elements[i].readOnly = false;
         }
+        
+        document.querySelector('#submit').disabled = false;
 
         if(apiResponse.status == 200) {
             setToast(1)
@@ -84,7 +90,7 @@ export default function Home() {
                     </label>
                     <input id="note" type="text" name="note" placeholder="Describe transaction" className='w-full border-2 rounded-md p-2 text-base'/>
                 </div>
-                <button type="submit" className='bg-green-400 hover:bg-green-500 transition-colors flex-auto h-10 rounded-md p-1 my-4'>Submit</button>
+                <button id="submit" type="submit" className={' bg-green-400 hover:bg-green-500 disabled:bg-gray-400 transition-colors flex-auto h-10 rounded-md p-1 my-4'}>Submit</button>
                 <div>
                     {toast == 1 ? <p className='flex absolute bottom-1 right-1 items-center bg-green-400 w-32 h-10 rounded-md p-4 my-1'>Success</p> : null}
                     {toast == 2 ? <p className='flex absolute bottom-1 right-1 items-center bg-red-400 w-32 h-10 rounded-md p-4 my-1'>Failed</p> : null}
