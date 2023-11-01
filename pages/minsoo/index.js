@@ -14,7 +14,10 @@ export default function Home() {
             elements[i].readOnly = true;
         }
         
-        const date = document.querySelector('#date').value
+        let date = document.querySelector('#date').value
+        date = date.split('-')
+        date = date[1] + '/' + date[2] + '/' + date[0]
+        const category = document.querySelector('#category').value
         const note = document.querySelector('#note').value
         const amount = document.querySelector('#amount').value
         
@@ -27,7 +30,8 @@ export default function Home() {
             body: JSON.stringify({
                 date,
                 note,
-                amount
+                category,
+                amount,
             })
         });
         console.log(apiResponse.status)
@@ -63,11 +67,26 @@ export default function Home() {
 
                     <div className='flex flex-col flex-auto w-36'>
                         <label className='text-xs'>
+                            Category
+                        </label>
+                        <select id="category" name="category" className='w-full h-10 border-2 rounded-md p-2 text-base'>
+                            <option value="food">food</option>
+                            <option value="coffee">coffee</option>
+                            <option value="transport">transport</option>
+                            <option value="wants">wants</option>
+                            <option value="etc">etc</option>
+                        </select>
+                    </div>
+
+                    <div className='flex flex-col flex-auto w-36'>
+                        <label className='text-xs'>
                             Amount
                         </label>
                         <input id="amount" type="number" step="0.01" name="amount" placeholder="$ x.xx" className='w-full h-10 border-2 rounded-md p-2 text-base'/>
                     </div>
                 </div>
+
+                <div className='flex flex-wrap justify-between gap-2 my-1'></div>
 
                 <div className='flex flex-col flex-1 my-1'>
                     <label className='block text-xs'>

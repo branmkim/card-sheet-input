@@ -1,11 +1,7 @@
 import { google } from 'googleapis'
 
 export default async function handler(req, res) {
-    const query = []
-    Object.keys(req.body).forEach((key, index) => {
-        if(key != 'card') query.push(req.body[key])
-    })
-    console.log(query)
+    const query = [req.body["date"], req.body["note"], req.body["category"], req.body["amount"]]
 
     const auth = await google.auth.getClient({
         projectId: "norse-carport-392418",
