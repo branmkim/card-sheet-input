@@ -21,9 +21,14 @@ export default async function handler(req, res) {
             query
         ]
     }
+
+    const today = new Date()
+    const month = today.toLocaleString('default', { month: 'short' }).toLowerCase();
+    const year = today.toLocaleString('default', { year: '2-digit' });
+
     const response = await sheets.spreadsheets.values.append({
         spreadsheetId: "1AfgQFaRvrmZZdq5PsoXbqXTlJCO1TBcAqVfhZDAk9u0",
-        range: 'oct 23' + "!A:C",
+        range: month + ' ' + year + "!A:C",
         valueInputOption: "USER_ENTERED",
         resource: body
     })
