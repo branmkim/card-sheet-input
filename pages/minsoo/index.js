@@ -71,7 +71,6 @@ export default function Home() {
                         </label>
                         <select id="category" name="category" className='w-full h-10 border-2 rounded-md p-2 text-base'>
                             <option value="food">food</option>
-                            <option value="coffee">coffee</option>
                             <option value="transport">transport</option>
                             <option value="wants">wants</option>
                             <option value="etc">etc</option>
