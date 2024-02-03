@@ -1,7 +1,7 @@
 import { google } from 'googleapis'
 
 export default async function handler(req, res) {
-    const query = [req.body["date"], req.body["note"], req.body["category"], req.body["amount"], false]
+    const query = [req.body["date"], req.body["note"], req.body["category"], req.body["amount"]]
 
     const auth = await google.auth.getClient({
         projectId: "norse-carport-392418",
