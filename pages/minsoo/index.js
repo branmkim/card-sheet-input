@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 
 export default function Home() {
     const [toast, setToast] = useState(0)
@@ -54,9 +54,20 @@ export default function Home() {
         }, 1000)
     }
 
+    const fillMetro = () => {
+        document.querySelector('#category').value = 'transport'
+        document.querySelector('#note').value = 'metro'
+        document.querySelector('#amount').value = '2.90'
+        document.querySelector('#date').value = new Date().toISOString().split('T')[0]
+    }
+
+    useEffect(() => {
+        document.querySelector('#date').value = new Date().toISOString().split('T')[0]
+    }, [])
+
     return (
         <main className="px-8 pt-8">
-                <form id="form" onSubmit={handleClick} className='flex flex-col w-60%'>
+                <form id="form" onSubmit={handleClick} className='flex flex-col w-3/5 gap-2'>
                 <div className='flex flex-wrap justify-between gap-2 my-1'>
                     <div className='flex flex-col flex-auto w-36'>
                         <label className='text-xs'>
@@ -85,15 +96,14 @@ export default function Home() {
                     </div>
                 </div>
 
-                <div className='flex flex-wrap justify-between gap-2 my-1'></div>
-
                 <div className='flex flex-col flex-1 my-1'>
                     <label className='block text-xs'>
                         Note
                     </label>
                     <input id="note" type="text" name="note" placeholder="Describe transaction" className='w-full border-2 rounded-md p-2 text-base'/>
                 </div>
-                <button id="submit" type="submit" className={' bg-green-400 hover:bg-green-500 disabled:bg-gray-400 transition-colors flex-auto h-10 rounded-md p-1 my-4'}>Submit</button>
+                <button id="metro" onClick={fillMetro} type="button" className={'border-blue-300 border-2 hover:bg-blue-300 transition-colors flex-auto h-10 rounded-md p-1'}>metro 🚂</button>
+                <button id="submit" type="submit" className={'bg-green-400 hover:bg-green-500 disabled:bg-gray-400 transition-colors flex-auto h-10 rounded-md p-1'}>Submit</button>
                 <div>
                     {toast == 1 ? <p className='flex absolute bottom-1 right-1 items-center bg-green-400 w-32 h-10 rounded-md p-4 my-1'>Success</p> : null}
                     {toast == 2 ? <p className='flex absolute bottom-1 right-1 items-center bg-red-400 w-32 h-10 rounded-md p-4 my-1'>Failed</p> : null}
