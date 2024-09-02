@@ -55,7 +55,7 @@ export default function Home() {
 
     return (
         <main className="px-8 pt-8">
-                <form id="form" onSubmit={handleClick} className='flex flex-col w-60%'>
+                <form id="form" onSubmit={handleClick} className='flex flex-col'>
                 <div className='flex flex-wrap justify-between gap-2 my-1'>
                     <div className='flex flex-col flex-auto w-36'>
                         <label className='text-xs'>
